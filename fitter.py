@@ -6,6 +6,7 @@ import os
 import sys
 import csv
 
+#读入csv数据
 filename = 'CurveRecTestWell.CSV'
 data = []
 with open(filename, "r") as file_to_read:
@@ -42,6 +43,8 @@ p0.append(0)
 
 #进行拟合
 r = optimize.leastsq(residuals, p0, args=(Length, proper))
+
+#输出结果
 result = r[0]
 
 for i in range(len(result) - 1):
