@@ -35,12 +35,21 @@ def residuals(p, Length, data):
     return Sum
 
 ### 输出参数 Output parameter
+p0 = []
+for i in range(Length - 1):
+    p0.append(1)
+p0.append(0)
 
-p0 = [1, 1, 0]
-#Sum = residuals(p0, Length, proper)
-#print(Sum)
+#进行拟合
 r = optimize.leastsq(residuals, p0, args=(Length, proper))
-print(r[0])
-k1, k2, b = r[0]
-print("k1 = ",k1, "k2 =",k2, "b =",b)
-print("y = (",k1, ")x1 + (",k2, ")x2 + (",b, ")")
+result = r[0]
+
+for i in range(len(result) - 1):
+    print("k" + str(i + 1) + " = " + str(result[i]))
+print("b = " + str(result[len(result) - 1]))
+
+Str = "y = "
+for i in range(len(result) - 1):
+    Str += ("(" + str(result[i]) + ")x" + str(i + 1) + " + ")
+Str += ("(" + str(result[len(result) - 1]) + ")")
+print(Str)
