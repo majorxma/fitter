@@ -35,7 +35,6 @@ def residuals(p, Length, data):
         Sum.append(sum1)
     return Sum
 
-### 输出参数 Output parameter
 p0 = []
 for i in range(Length - 1):
     p0.append(1)
